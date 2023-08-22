@@ -1,0 +1,13 @@
+[90m= [39m[34;4mApp\Models\Work[39;24m {#6595
+    [34mid[39m: [35m1[39m,
+    [34mdate[39m: "[32m2021-08-01[39m",
+    [34mmember_id[39m: [35m1[39m,
+    [34mstart_time[39m: "[32m09:00:00[39m",
+    [34mend_time[39m: "[32m18:00:00[39m",
+    [34mbreak_time[39m: [35m60[39m,
+    [34movertime_hours[39m: [35m0[39m,
+    [34mnote[39m: "[32mテスト[39m",
+    [34mcreated_at[39m: [36mnull[39m,
+    [34mupdated_at[39m: [36mnull[39m,
+  }
+
