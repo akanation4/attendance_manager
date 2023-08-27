@@ -22,11 +22,12 @@ class StoreWorkRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'member_id' => 'required|integer',
-            'start_time' => 'required|date_format:H:i',
-            'end_time' => 'required|date_format:H:i|after:start_time',
-            'break_time' => 'nullable|integer',
-            'overtime_hour' => 'nullable|integer',
+            'member_id' => ['required', 'integer'],
+            'start_time' => ['required', 'date_format:H:i'],
+            'end_time' => ['required', 'date_format:H:i', 'after:start_time'],
+            'break_time' => ['required', 'integer'],
+            'overtime_hours' => ['required', 'integer'],
+            'note' => ['nullable', 'string', 'max:255'],
         ];
     }
 }

@@ -18,6 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/work', [WorkController::class, 'index'])->name('work');
-//Route::post('/work', [WorkController::class, 'store'])->name('work.store');
-Route::post('/confirm', [WorkController::class, 'store'])->name('confirm');
+Route::group(['prefix' => 'works', 'as' => 'works.'], function () {
+    Route::get('/', [WorkController::class, 'index'])->name('index');
+    Route::post('/store', [WorkController::class, 'store'])->name('store');
+});

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->time('end_time');
             $table->integer('break_time');
             $table->integer('overtime_hours');
-            $table->string('note');
+            $table->string('note')->nullable();
             $table->timestamps();
         });
     }

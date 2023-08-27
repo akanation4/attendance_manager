@@ -4,7 +4,7 @@
 @include('layouts.head')
 
 @section('content')
-<form method="POST" action="{{ route('confirm') }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('works.store') }}" enctype="multipart/form-data">
     @csrf
     <div>
         <label for="member_id">名前</label>
@@ -41,9 +41,16 @@
         @enderror
     </div>
     <div>
-        <label for="overtime_hour">時間外労働</label>
-        <input type="number" name="overtime_hour" id="overtime_hour" min="0" max="180" step="15" value=0>分
-        @error('overtime_hour')
+        <label for="overtime_hours">時間外労働</label>
+        <input type="number" name="overtime_hours" id="overtime_hours" min="0" max="180" step="15" value=0>分
+        @error('overtime_hours')
+            <div>{{ $message }}</div>
+        @enderror
+    </div>
+    <div>
+        <label for="note">備考</label><br>
+        <textarea name="note" id="note" cols="30" rows="1"></textarea>
+        @error('note')
             <div>{{ $message }}</div>
         @enderror
     </div>

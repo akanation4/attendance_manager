@@ -23,7 +23,7 @@ class WorkController extends Controller
             $start_time = '14:00';
             $end_time = '18:00';
         }
-        return view('work', [
+        return view('works.index', [
             'members' => $members,
             'start_time' => $start_time,
             'end_time' => $end_time,
@@ -36,9 +36,9 @@ class WorkController extends Controller
 
         $work = new Work($request->validated());
         $work->date = $date;
+        var_dump($work);
+        $work->save();
 
-        return view('confirm', [
-            'work' => $work,
-        ]);
+        return redirect()->route('works.index');
     }
 }

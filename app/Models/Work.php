@@ -15,7 +15,8 @@ class Work extends Model
         'start_time',
         'end_time',
         'break_time',
-        'overtime_hour',
+        'overtime_hours',
+        'note'
     ];
 
     public function member()
