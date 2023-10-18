@@ -35,20 +35,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::group(['prefix' => 'works', 'as' => 'works.'], function () {
+        // 勤怠登録
+        Route::get('/', [WorkController::class, 'index'])->name('index');
+        Route::post('/store', [WorkController::class, 'store'])->name('store');
+
+        // 勤怠確認
+        Route::get('/show', [WorkController::class, 'show'])->name('show');
+    });
 });
 
 require __DIR__.'/auth.php';
 
-Route::group(['prefix' => 'works', 'as' => 'works.'], function () {
-    // ログインせずに利用可能
-    Route::get('/', [WorkController::class, 'index'])->name('index');
-    Route::post('/store', [WorkController::class, 'store'])->name('store');
 
-    // ログイン処理
-    Route::get('/login', [OrganizationController::class, 'index'])->name('login');
-
-    // ログイン時のみ確認可能
-    Route::get('/show', [WorkController::class, 'show'])->name('show');
-});
 
 
