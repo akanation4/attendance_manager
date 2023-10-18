@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreWorkRequest;
+use App\Http\Resources\WorkResource;
 use App\Models\Member;
 use App\Models\Work;
 use DateTime;
@@ -46,6 +47,11 @@ class WorkController extends Controller
 
     public function show()
     {
-        // $works = Work::
+        $works = Work::groupBy('id')
+        ->selectRaw('id, date, start_time, end_time, break_time, overtime_hours, note')
+        ->paginate(10);
+        return Inertia::render('Works/Show', [
+            'works' => WorkResource::collection($works),
+        ]);
     }
 }

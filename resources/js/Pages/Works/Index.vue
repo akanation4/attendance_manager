@@ -18,8 +18,7 @@ const form = reactive({
 })
 
 function submitWork() {
-    console.log(props.errorBags)
-    router.post('works/store', form)
+    router.post('store', form)
 }
 </script>
 
