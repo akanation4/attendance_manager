@@ -6,8 +6,10 @@ use App\Http\Requests\StoreWorkRequest;
 use App\Models\Member;
 use App\Models\Work;
 use DateTime;
+use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 
 class WorkController extends Controller
@@ -23,10 +25,11 @@ class WorkController extends Controller
             $start_time = '14:00';
             $end_time = '18:00';
         }
-        return view('works.index', [
+
+        return Inertia::render('Works/Index', [
             'members' => $members,
             'start_time' => $start_time,
-            'end_time' => $end_time,
+            'end_time' => $end_time
         ]);
     }
 
@@ -36,9 +39,13 @@ class WorkController extends Controller
 
         $work = new Work($request->validated());
         $work->date = $date;
-        var_dump($work);
         $work->save();
 
-        return redirect()->route('works.index');
+        return redirect()->route('works.index')->with('message', '登録しました。');
+    }
+
+    public function show()
+    {
+        // $works = Work::
     }
 }

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('works', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->foreignId('member_id')->constrainted('members');
+            $table->foreignId('member_id')->constrained('members');
             $table->time('start_time');
             $table->time('end_time');
             $table->integer('break_time');

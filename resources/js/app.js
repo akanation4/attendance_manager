@@ -1,21 +1,23 @@
-import "./bootstrap";
-import "../css/app.css";
+import './bootstrap';
+import '../css/app.css';
 
-import { createApp } from "vue";
-import App from "./App.vue";
-// Vue Routerを使用する場合はrouter.jsを作成しインポートする
-// import router from "./router";
-// Vuexをを使用する場合はstoreフォルダ以下にファイルを作成しインポートする
-// import store from "./store";
+import { createApp, h } from 'vue';
+import { createInertiaApp } from '@inertiajs/vue3';
+import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 
-const buildApp = async () => {
-    const app = createApp(App);
-    // Vue Routerを使用する場合
-    // app.use(router);
-    // Vuexをを使用する場合
-    // app.use(store);
+const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
-    app.mount("#app");
-};
-
-buildApp();
+createInertiaApp({
+    title: (title) => `${title} - ${appName}`,
+    resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
+    setup({ el, App, props, plugin }) {
+        return createApp({ render: () => h(App, props) })
+            .use(plugin)
+            .use(ZiggyVue, Ziggy)
+            .mount(el);
+    },
+    progress: {
+        color: '#4B5563',
+    },
+});
