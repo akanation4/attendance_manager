@@ -132,7 +132,7 @@ return [
         'start_time' => '開始時間',
         'end_time' => '終了時間',
         'break_time' => '休憩時間',
-        'member_id' => '時間外労働',
-
+        'overtime_work' => '時間外労働',
+        'note' => '備考',
     ],
 ];
